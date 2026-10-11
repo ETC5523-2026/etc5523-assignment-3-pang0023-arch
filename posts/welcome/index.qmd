@@ -1,12 +1,13 @@
 ---
 title: "Welcome To My Blog Template"
-author: "Emi Tanaka"
-date: "2022-07-18"
+author: "Pei Sin Ang"
+date: "2026-10-12"
 categories: [news]
 ---
 
+## Header 
 This is the first post in a Quarto blog. Welcome!
 
-![](thumbnail.jpg)
 
+The model explained [99%]{#highlight} of the variation in nitrate.
 

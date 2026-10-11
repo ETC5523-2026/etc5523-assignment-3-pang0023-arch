@@ -8,25 +8,42 @@
 }
 
 .navbar-title {
-  color:#16697a;
+  color:#355070;
 }
 
 /* Page background and body text */
 body {
   background-color: #ede7e3 ;   
-  color: #489fb5;              
+  color: ##16697a;              
 }
 
 /* Heading colours */
 h1, h2{
-  color: #16697a; 
+  color: #355070; 
 }
 
 /* Headings inside a finding */
-.finding h2 { color: #489fb5}
+.finding h2 { color: #16697a}
 
 /* Emphasised words or results */
 #highlight {
-  color: #ffa62b;
+  color: #b56576;
   font-weight: 700;
+}
+
+/* Clickable links */
+a {
+  color: #6d597a;
+}
+
+/* Justify the about page bio */
+.quarto-about-trestles .about-contents {
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* About page button hover */
+div.quarto-about-trestles .about-entity .about-link:hover {
+  color: #e56b6f !important;
+  border-color: #e56b6f !important;
 }
