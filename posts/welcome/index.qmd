@@ -1,13 +1,33 @@
 ---
-title: "Welcome To My Blog Template"
+title: "Keeping an eye on nitrate without breaking the budget"
 author: "Pei Sin Ang"
 date: "2026-10-12"
-categories: [news]
+categories: [Environmental]
+image: thumbnail.jpg
+bibliography: references.bib
 ---
 
-## Header 
-This is the first post in a Quarto blog. Welcome!
+## Problem Description 
+After a heavy summer storm, the river you manage might look the same, but nitrate levels can spike to as much as 100 times the safe guideline [@gomez_isaza_anthropogenic_2020], and unless someone happens to take a sample that day, no one will know. 
+
+Nitrate occurs naturally in rivers and streams at low levels, but human activities can push it far higher. Nitrate enters water bodies from the air, surface runoff that carries fertiliser, urban waste and debris into waterways. Too much of it fuels algae blooms, which can starve the water of oxygen and harm fish and other wildlife [@kermorvant_understanding_2023].
+
+For freshwater managers, this makes nitrate worth keeping track of. Knowing how much is in a river and when it rises shows where action is needed and when wildlife are most at risk. However, measuring it is hard. Nitrate can rise and fall within a single day and shift quickly after rain, so occasional water samples collected by hand can easily miss the moments that matter [@kermorvant_understanding_2023]. Nitrate sensors can track it continuously, but they are expensive, so they can only be placed at a few sites or for short periods. Meanwhile, cheaper sensors that continuously measure temperature, oxygen, salinity and cloudiness are increasingly used in river monitoring [@kermorvant_understanding_2023].
+
+So, could these cheaper sensors tell us something useful about nitrate? And does that hold for rivers in very conditions?
+
+## Analysis
+
+Source of the evidence or data used in the original article clearly identified (1 mark)
+Findings reported in the original article clearly described in language appropriate for the intended audience (2 marks)
+Tables and plots designed so that the intended audience can acquire the desired information efficiently (2 marks for plot, 2 marks for table)
+Included cross-references (1 mark)
+Discussion of the evidence links back to the questions in the problem description (2 marks)
 
 
+## Conclusion
 The model explained [99%]{#highlight} of the variation in nitrate.
 
+Links back to the problem description (2 marks)
+Includes academic citation (here or other section) (1 mark)
+Summarises the findings (2 marks)

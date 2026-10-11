@@ -47,3 +47,16 @@ div.quarto-about-trestles .about-entity .about-link:hover {
   color: #e56b6f !important;
   border-color: #e56b6f !important;
 }
+
+/* References / appendix section */
+#quarto-appendix.default {
+  background-color: #ede7e3;                      /* match page */
+  border-top: 1px solid rgba(53, 80, 112, 0.2);   /* subtle divider instead of a white box */
+}
+
+/* "References" heading */
+#quarto-appendix .quarto-appendix-heading,
+#quarto-appendix h2 {
+  color: #355070;
+  opacity: 1;
+}
