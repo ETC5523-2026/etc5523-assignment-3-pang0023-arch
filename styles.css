@@ -132,3 +132,18 @@ div.quarto-about-trestles .about-entity .about-link:hover {
   border-color: #16697a;
   opacity: 1;
 }
+
+.quarto-listing .quarto-post:hover .listing-description::after {
+  background-color: #355070;
+  color: #ede7e3;
+}
+
+/* Space between listing title and category pill */
+.quarto-listing .quarto-post .listing-categories {
+  margin-top: 0.5rem;    
+}
+
+/* Hide the description under the title on post */
+body:not(.blog-home) #title-block-header .description {
+  display: none;
+}

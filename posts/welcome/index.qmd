@@ -1,5 +1,6 @@
 ---
 title: "Keeping an eye on nitrate without breaking the budget"
+description: "Nitrate can climb to as much as 100 times the guideline after a storm..."
 author: "Pei Sin Ang"
 date: "2026-10-12"
 categories: [Environmental]
