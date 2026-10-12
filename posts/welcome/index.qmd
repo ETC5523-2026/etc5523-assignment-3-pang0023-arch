@@ -1,12 +1,138 @@
 ---
-title: "Welcome To My Blog Template"
-author: "Emi Tanaka"
-date: "2022-07-18"
-categories: [news]
+title: "Keeping an eye on nitrate without breaking the budget"
+description: "Nitrate can climb to as much as 100 times the guideline after a storm..."
+author: "Pei Sin Ang"
+date: "2026-10-12"
+categories: [Environmental]
+image: thumbnail.jpg
+bibliography: references.bib
 ---
 
-This is the first post in a Quarto blog. Welcome!
+After a heavy summer storm, the river you manage might look the same, but nitrate can climb to as much as 100 times the current guideline [@gomez_isaza_anthropogenic_2020]. Unless someone happens to take a sample that day, no one will know.
 
-![](thumbnail.jpg)
+Nitrate occurs naturally in rivers and streams at low levels, but human activities can push it far higher. It enters waterways from the air and from runoff that carries fertiliser, urban waste and debris. Too much of it fuels algae blooms, which can starve the water of oxygen and harm fish and other wildlife [@kermorvant_understanding_2023].
+
+The current Australian nitrate guideline was set at the level where half of test animals die, not where harm begins. Researchers have called for tighter limits, especially in summer and after heavy rain [@gomez_isaza_anthropogenic_2020]. But tighter limits require better measurements.
+
+To protect wildlife, managers need to know not just how much nitrate is in a river, but when it rises. However, nitrate can rise and fall within a single day and shift quickly after rain, so occasional water samples collected by hand can easily miss the moments that matter [@kermorvant_understanding_2023]. A sample taken on a calm day might sit comfortably within the guideline while a spike after the next storm goes unrecorded. Nitrate sensors can track it continuously, but they are expensive, so they can only be placed at a few sites or for short periods. Meanwhile, cheaper sensors that continuously measure temperature, dissolved oxygen, salinity (electrical conductivity) and turbidity are increasingly used in river monitoring.
+
+Could these cheaper sensors tell us something useful about nitrate? And does that hold for rivers in very different conditions?
+
+To answer these questions, we can look at a 2023 study that tested exactly this idea [@kermorvant_understanding_2023]. The study was funded by the Australian Research Council (ARC) and involved several researchers based at Australian universities, including Monash, QUT, Macquarie and RMIT.
+
+The researchers used data from three very different rivers in the United States, taken from the National Ecological Observatory Network (NEON), a free, open database of river sensor readings (@tbl-rivers). Choosing such different rivers is what lets us test our second question. The study used two years of data (January 2018 to December 2019). At each river, a nitrate sensor ran alongside cheaper and five increasingly common sensors that measure temperature, dissolved oxygen, salinity, turbidity and water level. The nitrate readings gave the researchers the true picture to compare against, so they could test how much of nitrate's rise and fall the cheaper measurements could account for.
+
+```{r}
+#| label: tbl-rivers
+#| tbl-cap: "River sites with different climates, surroundings and human activities used in this study. Data: @kermorvant_understanding_2023."
+#| echo: false
+#| message: false
+
+library(tibble)
+library(knitr)
+
+rivers <- tibble(
+  river    = c("Arikaree", "Caribou", "Lewis Run"),
+  location = c("Colorado", "Alaska", "Virginia"),
+  climate  = c("Semi-arid (dry)", "Subarctic (very cold)", "Temperate (mild)"),
+  land     = c("Grassland and agriculture",
+               "Coniferous forest with partially frozen ground",
+               "Fields, pasture, woodlands and small ponds"),
+  urban    = c("Rural", "Almost untouched", "Urban area nearby"),
+  flow     = c("Dries up in summer",
+               "Frozen in winter",
+               "Flows all year")
+)
+
+kable(
+  rivers,
+  col.names = c("River", "Location", "Climate", "Surrounding land",
+                "Urban influence", "How it flows"),
+  align = "l"
+)
+```
+
+Arikaree's dry summers and farming land are not unlike many inland Australian streams, and Lewis Run's mix of farmland and nearby town is similar to a creek on the edge of a city. This does not mean the results carry straight over to Australian rivers, but it does suggest the approach is worth trying in conditions like ours.
+
+::: {.finding}
+Could these cheaper sensors tell us something useful about nitrate?
+:::
+
+The short answer is yes. The researchers looked back over the two years of readings to see which of the cheaper measurements rose and fell along with nitrate. All five mattered at every river. Together with the time of day and season, the five measurements tracked most of nitrate's ups and down, ranging from 75% at Arikaree to 85% at Lewis Run.
+
+This doesn't mean a nitrate sensor is no longer needed, each river's model was built using real nitrate readings. However, it does help managers with limited budgets decide which sensors are worth buying and which measurements to take. Researchers also see potential, for using models like these to fill gaps in sensor records, or to estimate measurements where sensors are too expensive [@kermorvant_understanding_2023].
+
+```{r}
+#| label: fig-drivers
+#| fig-cap: "The same five measurements mattered in all three rivers. Salinity led at Caribou and Lewis Run, while all five mattered only a little at Arikaree.Measurements approximated from @kermorvant_understanding_2023."
+#| fig-width: 9
+#| fig-height: 4.5
+#| echo: false
+#| message: false
+
+library(tidyverse)
+
+importance_data <- tibble(
+  site = rep(c("Arikaree", "Caribou", "Lewis Run"), each = 6),
+  variable = rep(c("Time", "Temperature", "Surface Water Elevation", 
+                    "Specific Conductance", "Log(Turbidity)", "Dissolved Oxygen"), times = 3),
+  importance = c(4, 4.5, 3.5, 3.5, 3.5, 3.5,     # Arikaree
+                 6, 6, 5, 10, 1.5, 5.5,           # Caribou
+                 12, 11, 13, 16, 12, 11.5)        # Lewis Run
+)
+
+panel_titles <- c(
+  "Arikaree"  = "Arikaree, Colorado",
+  "Caribou"   = "Caribou, Alaska",
+  "Lewis Run" = "Lewis Run, Virginia"
+)
+
+importance_data <- importance_data |>
+  filter(variable != "Time") |>
+  mutate(
+     variable = recode(variable,
+      "Temperature"             = "Temperature",
+      "Surface Water Elevation" = "Water level",
+      "Specific Conductance"    = "Salinity",
+      "Log(Turbidity)"          = "Turbidity",
+      "Dissolved Oxygen"        = "Dissolved oxygen"
+    ),
+    panel = factor(panel_titles[site], levels = panel_titles)
+  ) |>
+  # Mark biggest measurement in each river
+  group_by(site) |>
+  mutate(top = importance == max(importance) & site != "Arikaree") |>
+  ungroup() |>
+  mutate(variable = fct_reorder(variable, importance, .fun = mean))
+
+ggplot(importance_data, aes(x = importance, y = variable, fill = top)) +
+  geom_col(width = 0.7) +
+  facet_wrap(~ panel, ncol = 3) +
+  scale_fill_manual(values = c(`TRUE` = "#16697a", `FALSE` = "grey80"),
+                    guide = "none") +
+  scale_x_continuous(expand = expansion(mult = c(0, 0.05))) +
+  labs(
+    x = "How much each measurement matters (longer bar = more important)",
+    y = NULL
+  ) +
+  theme_minimal(base_size = 13) +
+  theme(
+    panel.grid.major.y = element_blank(),
+    panel.grid.major.x = element_blank(),
+    panel.grid.minor   = element_blank(),
+    axis.text.x        = element_blank(),
+    axis.text          = element_text(color = "black"),
+    strip.text         = element_text(hjust = 0, size = 11, face = "bold"),
+    plot.background = element_rect(fill = "#ede7e3", colour = NA),
+    panel.background = element_rect(fill = "#ede7e3", colour = NA)
+  )
+```
 
 
+::: {.finding}
+Does that hold for rivers in very different conditions? 
+:::
+
+Partly. The same five measurements mattered in every river, but which one mattered most depended on the river (@fig-drivers). Salinity, for example, was more than three times as important at Lewis Run as at Arikaree. The same basic sensor kit is worth might be worth having, but each river needs its own model. 
+
+Cheaper sensors can tell us something useful about nitrate, tracking most of its ups and downs, although which measurement mattered most varied from river to river. This study only looked at how these measurements relate to nitrate in three US rivers, so it is not yet known how well the approach works in Australia, but it is a stepping stone for future work on tracking nitrate with cheaper sensors. If successful, river managers on a tight budget could get a clearer picture of nitrate in their rivers, and better guidelines could be put in place to protect wildlife.

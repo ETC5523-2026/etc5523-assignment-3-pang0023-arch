@@ -1,13 +1,20 @@
 ---
-title: "About"
-image: profile.jpg
+title: "Pei Sin Ang"
+image: profile.jpeg
 about:
-  template: jolla
+  template: trestles
+  image-shape: round
   links:
     - icon: github
-      text: Github
-      href: https://github.com/etc5523-2022
+      text: GitHub
+      href: https://github.com/pang0023-arch
+    - icon: youtube
+      text: Youtube
+      href: https://www.youtube.com/c/TheRightNudge
 
 ---
 
-This is a blog template for the ETC5523 Communicating with Data assessment at Monash University.
+I am a first year student in the [Master of Business Analytics](https://www.monash.edu/business/master-of-business-analytics) at Monash University. I am also a Senior Associate Director with [PropNex Singapore](https://www.propnex.com/), where I analyse Singapore property market data to help clients compare developments and plan their portfolios.
+
+Outside of property, I explore data wherever it leads. *Downstream* is about the effects that follow. Every dataset shapes a decision somewhere further along, and I'm interested in tracing those links.
+

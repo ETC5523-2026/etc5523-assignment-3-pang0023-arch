@@ -1,5 +1,7 @@
 ---
-title: "ETC5523 Blog Assessment"
+title: "Downstream Data"
+subtitle: "wherever findings flow"
+body-classes: blog-home
 listing:
   contents: posts
   sort: "date desc"

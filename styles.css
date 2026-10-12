@@ -1,4 +1,149 @@
 /* css styles */
+
+
+
 .navbar-dark, .quarto-title-banner {
-  background-color: #006DAE;
+  background-color: #ede7e3;
+}
+
+.navbar {
+  background-color: #ede7e3;
+}
+
+.navbar-title {
+  color:#355070;
+}
+
+/* Page background and body text */
+body {
+  background-color: #ede7e3 ;   
+  color: #000000;              
+}
+
+/* Heading colours */
+h1, h2{
+  color: #355070; 
+}
+
+/* Question callouts */
+.finding {
+  color: #355070;
+  font-size: 1.15rem;
+  font-weight: 600;
+  border-left: 4px solid #e56b6f;               /* vertical bar */
+  margin: 2rem 0 1rem 1.5rem;                   /* left indent */
+  padding: 0.75rem 1rem;
+  background-color: #ede7e3;
+  border-radius: 0 6px 6px 0;
+  box-shadow: 0 2px 8px rgba(53, 80, 112, 0.15);
+}
+
+/* Remove extra space and inherited heading styles inside the box */
+.finding > * {
+  margin: 0;
+  font-size: inherit;
+  color: inherit;
+}
+
+/* Emphasised words or results */
+#highlight {
+  color: #e56b6f;
+  font-weight: 700;
+}
+
+/* Clickable links */
+a {
+  color: #6d597a;
+}
+
+/* Justify the about page bio */
+.quarto-about-trestles .about-contents {
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* About page button hover */
+div.quarto-about-trestles .about-entity .about-link:hover {
+  color: #e56b6f !important;
+  border-color: #e56b6f !important;
+}
+
+/* References / appendix section */
+#quarto-appendix.default {
+  background-color: #ede7e3;                      /* match page */
+  border-top: 1px solid rgba(53, 80, 112, 0.2);   /* subtle divider instead of a white box */
+}
+
+/* "References" heading */
+#quarto-appendix .quarto-appendix-heading,
+#quarto-appendix h2 {
+  color: #355070;
+  opacity: 1;
+}
+
+/* ---------- Title block (post and blog pages) ---------- */
+
+/* Page and post titles */
+#title-block-header .quarto-title .title {
+  color: #355070;
+}
+
+/* Category pill under the title */
+#title-block-header .quarto-categories .quarto-category {
+  color: #16697a;
+  border-color: #16697a;
+  opacity: 1;
+}
+
+/* ---------- Blog home page only ---------- */
+
+/* Title and subtitle in Lora */
+.blog-home #title-block-header .quarto-title .title,
+.blog-home #title-block-header .quarto-title .subtitle {
+  font-family: "Lora", serif;
+}
+
+.blog-home #title-block-header .quarto-title .title {
+  font-size: 3rem;
+  font-weight: 700;
+}
+
+.blog-home #title-block-header .quarto-title .subtitle {
+  font-size: 1.25rem;
+  font-style: italic;
+  color: #6d597a;
+}
+
+/* ---------- Listing page ---------- */
+
+/* Post titles */
+.quarto-listing .quarto-post .listing-title a {
+  color: #355070;
+}
+
+.quarto-listing .quarto-post .listing-title a:hover {
+  text-decoration: underline;
+  text-decoration-color: #b56576;
+}
+
+/* Category pills */
+.quarto-listing .quarto-post .listing-category {
+  color: #16697a;
+  border-color: #16697a;
+  opacity: 1;
+}
+
+.quarto-listing .quarto-post:hover .listing-description::after {
+  background-color: #355070;
+  color: #ede7e3;
+}
+
+/* Space between listing title and category pill */
+.quarto-listing .quarto-post .listing-categories {
+  margin-top: 0.5rem;    
+}
+
+/* Hide the description under the title on post */
+body:not(.blog-home) #title-block-header .description {
+  display: none;
 }
